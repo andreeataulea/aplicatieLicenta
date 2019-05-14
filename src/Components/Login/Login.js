@@ -40,6 +40,10 @@ class Login extends Component{
         return errors;
       }
 
+      submit = data=>{
+        console.log(data);
+      }
+
       render() {
 
         const {data,errors} = this.state;
@@ -51,7 +55,7 @@ class Login extends Component{
             </div>
             <div className="box">
     
-              <div className="input-group" error={!!errors.email}>
+              <div className="input-group" >
                 <label htmlFor="email">Email</label>
                 <input
                   type="text"
@@ -65,7 +69,7 @@ class Login extends Component{
 
               </div>
     
-              <div className="input-group" error={!!errors.password}>
+              <div className="input-group" >
                 <label htmlFor="password">Password</label>
                 <input
                   type="password"

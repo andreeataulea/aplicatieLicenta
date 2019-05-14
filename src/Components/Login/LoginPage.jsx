@@ -3,6 +3,9 @@ import ReactDOM from "react-dom";
 import Register from './Register.js';
 import Login from './Login.js';
 import {Route} from "react-router-dom";
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import {login} from '../../Actions/auth'
 
 class LoginPage extends Component {
     constructor(props){
@@ -12,6 +15,10 @@ class LoginPage extends Component {
           isRegisterOpen:false
         };
       }
+
+      submit= data=>{
+        this.props.login(data).then(()=> this.props.history.push("/"));
+    };
     
       showLoginBox(){
         this.setState({
@@ -27,14 +34,11 @@ class LoginPage extends Component {
         });
       }
 
-      submit= data=>{
-          console.log(data);
-      };
+      
     
       render() {
         return (
-          //<div>
-          //   <Route path="/" exact component="Login"/>
+          
           <div className="root-container">
            <div className="box-controller">
             <div className="controller" onClick={this.showLoginBox.bind(this)}>
@@ -48,13 +52,23 @@ class LoginPage extends Component {
             <div className="box-container">
               {this.state.isLoginOpen && <Login submit={this.submit}/>}
               {this.state.isRegisterOpen && <Register/>}
+              
             </div>
-    
+          
           </div>
-          // </div>
+          
           
         );
       }
 }
 
-export default LoginPage;
+
+
+LoginPage.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  }).isRequired,
+  login:PropTypes.func.isRequired
+};
+
+export default connect(null,{login})(LoginPage);
