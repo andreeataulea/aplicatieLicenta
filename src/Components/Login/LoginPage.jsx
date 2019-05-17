@@ -16,9 +16,8 @@ class LoginPage extends Component {
         };
       }
 
-      submit= data=>{
+      submit= data=>
         this.props.login(data).then(()=> this.props.history.push("/"));
-    };
     
       showLoginBox(){
         this.setState({
@@ -33,8 +32,6 @@ class LoginPage extends Component {
           isLoginOpen:false
         });
       }
-
-      
     
       render() {
         return (

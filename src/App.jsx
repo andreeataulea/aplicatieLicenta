@@ -9,22 +9,29 @@ import './App.css';
 // import PageNavbar from "./Components/PageNavbar";
 import { BrowserRouter} from 'react-router-dom';
 import {Route} from "react-router-dom";
-import HomePage from './Components/Homepage';
-import LoginPage from './Components/Login/LoginPage';
+import HomePage from "./Components/Homepage";
+import LoginPage from "./Components/Login/LoginPage";
 import {BrowserRouter as Router,Link} from "react-router-dom";
 
-class App extends Component {
 
-  render(){
-    return(
-      <Router>
-        <div className="ui-container">
-          <Route path="src\Components\Homepage.jsx" exact component={HomePage}/>
-          <Route path="/" exact component = {LoginPage}/>
-        </div>
-      </Router>
-    );
-  }
+const App = ()=>(
+  <div className="ui container">
+  <Route path="/login" exact component = {LoginPage}/>
+  <Route path="/" exact component={HomePage}/>
+  </div>
+)
+// class App extends Component {
+
+//   render(){
+//     return(
+//       <Router>
+//         <div className="ui-container">
+//           <Route path="./Components/Homepage.jsx" exact component={HomePage}/>
+//           <Route path="/" exact component = {LoginPage}/>
+//         </div>
+//       </Router>
+//     );
+//   }
 
   // constructor(props){
   //   super(props);
@@ -72,7 +79,7 @@ class App extends Component {
       
   //   );
   // }
-}
+//}
 
 
 

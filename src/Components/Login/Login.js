@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from "react-dom";
 import  './Login.css';
-import {Form, Button} from 'semantic-ui-react';
+import {Form, Button,Message} from 'semantic-ui-react';
 import Validator from 'validator';
 import InlineError from '../Messages/InlineError.js';
 import PropTypes from 'prop-types'
@@ -27,9 +27,14 @@ class Login extends Component{
     
       submitLogin = () => {
         const errors = this.validate(this.state.data);
-        this.setState({errors});
-        if(Object.keys(errors).length === 0){
-          this.props.submit(this.state.data);
+        this.setState({ errors });
+        if (Object.keys(errors).length === 0) {
+          this.setState({ loading: true });
+          this.props
+            .submit(this.state.data)
+            .catch(err =>
+              this.setState({ errors: err.response.data.errors, loading:false})
+            );
         }
       }
 
@@ -40,21 +45,24 @@ class Login extends Component{
         return errors;
       }
 
-      submit = data=>{
-        console.log(data);
-      }
-
       render() {
 
-        const {data,errors} = this.state;
+        const {data,errors,loading} = this.state;
 
         return (
+          <Form onSubmit = {this.submitLogin} loading={loading}>
+          {errors.global && (
+          <Message negative>
+            <Message.Header>Something went wrong</Message.Header>
+            <p>{errors.global}</p>
+          </Message>
+        )}
           <div className="inner-container">
-            <div className="header">
+            <div className="title-Login">
               Login
             </div>
             <div className="box">
-    
+              <Form.Field error={!!errors.email}>
               <div className="input-group" >
                 <label htmlFor="email">Email</label>
                 <input
@@ -65,10 +73,12 @@ class Login extends Component{
                   placeholder="Email"
                   value={this.state.data.email}
                   onChange={this.onChange}/>
-                  {errors.email && <InlineError text = {errors.email}/>}
-
-              </div>
-    
+                  
+                </div>
+                {errors.email && <InlineError text = {errors.email}/>}
+                </Form.Field>
+                 
+              <Form.Field error={!!errors.password}>
               <div className="input-group" >
                 <label htmlFor="password">Password</label>
                 <input
@@ -79,15 +89,17 @@ class Login extends Component{
                   placeholder="Password"
                   value = {data.password}
                   onChange={this.onChange}/>
-                  {errors.password && <InlineError text = {errors.password}/>}
+                  
               </div>
-    
+              {errors.password && <InlineError text = {errors.password}/>}
+              </Form.Field>
               <button
                 type="button"
                 className="login-btn"
                 onClick={this.submitLogin.bind(this)}>Login</button>
             </div>
           </div>
+          </Form>
         );
       }
     

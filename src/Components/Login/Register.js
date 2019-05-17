@@ -137,7 +137,7 @@ constructor(props) {
 
     return (
       <div className="inner-container">
-        <div className="header">
+        <div className="title-Login">
           Register
         </div>
         <div className="box">

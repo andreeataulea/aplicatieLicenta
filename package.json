@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "chrome-launcher": "^0.10.7",
+    "nodemon": "^1.19.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
@@ -13,12 +14,12 @@
     "react-scripts": "2.1.8",
     "react-thunk": "^1.0.0",
     "redux": "^4.0.1",
+    "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.86.0",
     "simple-react-validator": "^1.0.7",
-    "validator": "^10.11.0",
-    "redux-devtools-extension": "^2.13.8"
+    "validator": "^10.11.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -35,7 +36,6 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "devDependencies": {
-    
-  }
+  "devDependencies": {},
+  "proxy": "http://localhost:8080"
 }

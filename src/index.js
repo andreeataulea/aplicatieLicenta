@@ -7,7 +7,7 @@ import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 import  registerServiceWorker from './registerServiceWorker';
 import {BrowserRouter, Route} from "react-router-dom";
-//import 'semantic-ui-css/semantic.min.css';
+import 'semantic-ui-css/semantic.min.css';
 import rootReducer from './Components/rootReducer.js';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
