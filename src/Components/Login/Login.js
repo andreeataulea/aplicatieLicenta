@@ -63,7 +63,6 @@ class Login extends Component{
             </div>
             <div className="box">
               <Form.Field error={!!errors.email}>
-              <div className="input-group" >
                 <label htmlFor="email">Email</label>
                 <input
                   type="text"
@@ -74,12 +73,12 @@ class Login extends Component{
                   value={this.state.data.email}
                   onChange={this.onChange}/>
                   
-                </div>
+               
                 {errors.email && <InlineError text = {errors.email}/>}
                 </Form.Field>
                  
               <Form.Field error={!!errors.password}>
-              <div className="input-group" >
+              
                 <label htmlFor="password">Password</label>
                 <input
                   type="password"
@@ -90,10 +89,10 @@ class Login extends Component{
                   value = {data.password}
                   onChange={this.onChange}/>
                   
-              </div>
+              
               {errors.password && <InlineError text = {errors.password}/>}
               </Form.Field>
-              <button
+              <button 
                 type="button"
                 className="login-btn"
                 onClick={this.submitLogin.bind(this)}>Login</button>

@@ -10,7 +10,7 @@ import {BrowserRouter, Route} from "react-router-dom";
 import 'semantic-ui-css/semantic.min.css';
 import rootReducer from './Components/rootReducer.js';
 import { composeWithDevTools } from 'redux-devtools-extension';
-
+import setAuthorizationHeader from "./Utils/setAuthorizationHeader";
 import { userLoggedIn } from "./Actions/auth.js";
 
 const store = createStore(
@@ -18,10 +18,21 @@ const store = createStore(
     composeWithDevTools(applyMiddleware(thunk))
 );
 
+// if(localStorage.appJWT){
+//     const payload = decode(localStorage.appJWT);
+//     const user = {
+//         token: localStorage.appJWT,
+//         email: payload.email,
+//         confirmed: payload.confirmed
+//     };
+//     setAuthorizationHeader(localStorage.appJWT);
+//     store.dispatch(userLoggedIn(user));
+// }
+
 ReactDOM.render(
     <BrowserRouter>
        <Provider store={store}> 
-       <App /></Provider> 
+       <Route component = {App} /></Provider> 
     </BrowserRouter>, 
     document.getElementById('root')
 );
