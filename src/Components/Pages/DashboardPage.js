@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ConfirmEmailMessage from "../Messages/ConfirmEmailMessage";
 
-
+//console.log(JSON.parse(sessionStorage.getItem("user"))) -> ia user-ul din session storage
 const DashboardPage = ({isConfirmed}) =>(
     <div>
         {!isConfirmed && <ConfirmEmailMessage/>}

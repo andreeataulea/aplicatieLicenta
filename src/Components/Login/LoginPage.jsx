@@ -6,6 +6,7 @@ import {Route} from "react-router-dom";
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {login} from '../../Actions/auth'
+import {register} from '../../Actions/auth'
 
 class LoginPage extends Component {
     constructor(props){
@@ -17,7 +18,10 @@ class LoginPage extends Component {
       }
 
       submit= data=>
-        this.props.login(data).then(()=> this.props.history.push("/dashboard"));
+        this.props.login(data).then(()=> this.props.history.push("/dashboard")).catch(err => console.log(err));
+      
+        submitRegister= data=>
+        this.props.register(data).then(()=> this.props.history.push("/dashboard")).catch(err => console.log(err));
     
       showLoginBox(){
         this.setState({
@@ -48,7 +52,7 @@ class LoginPage extends Component {
     
             <div className="box-container">
               {this.state.isLoginOpen && <Login submit={this.submit}/>}
-              {this.state.isRegisterOpen && <Register/>}
+              {this.state.isRegisterOpen && <Register submit={this.submitRegister}/>}
               
             </div>
           
@@ -65,7 +69,8 @@ LoginPage.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired
   }).isRequired,
-  login:PropTypes.func.isRequired
+  login:PropTypes.func.isRequired,
+  register:PropTypes.func.isRequired
 };
 
-export default connect(null,{login})(LoginPage);
+export default connect(null,{login, register})(LoginPage);

@@ -19,64 +19,12 @@ constructor(props) {
       bachelor : "", 
       password : "", 
       pwdState:null,
+      isAdmin: false
      },
      loading: false,
      errors:{}
     };
   }
-
-
-
-  // showValidationError(elm, msg){
-  //   this.setState((prevState)=>({errors:[...prevState.errors,{elm,msg}]}));
-
-  // }
-
-  // clearValidationError(elm){
-  //   this.setState((prevState)=>{
-  //     let newArr =[];
-  //     for(let err of prevState.errors){
-  //         if(elm != err.elm){
-  //           newArr.push(err);
-  //         }
-  //     }
-  //     return {errors: newArr};
-  //   });
-  // }
-
-  // onFirstChange(e){
-  //   this.setState({first: e.target.value});
-  //   this.clearValidationError("first");
-  // }
-
-  // onLastChange(e){
-  //   this.setState({last: e.target.value});
-  //   this.clearValidationError("last");
-  // }
-
-  // onEmailChange(e){
-  //   this.setState({email: e.target.value});
-  //   this.clearValidationError("email");
-  // }
-
-  // onBachelorChange(e){
-  //   this.setState({bachelor: e.target.value});
-  //   this.clearValidationError("bachelor");
-  // }
-
-  // onPasswordChange(e){
-  //   this.setState({password: e.target.value});
-  //   this.clearValidationError("password");
-
-  //   this.setState({pwdState: "weak"});
-  //   if(e.target.value.length > 8){
-  //     this.setState({pwdState: "medium"});
-  //   }
-  //    if(e.target.value.length > 12){
-  //     this.setState({pwdState: "strong"});
-  //   }
-  
-  
 
   onChange = e =>
   this.setState({
@@ -84,23 +32,11 @@ constructor(props) {
     data: { ...this.state.data, [e.target.name]: e.target.value }
   });
 
-  // submitRegister(e) {
-
-  //   console.log(this.state);
-
-    // if(this.state.first == ""){
-    //    this.showValidationError("first", "First name cannot be empty!");
-    // } if(this.state.last == ""){
-    //    this.showValidationError("last","Last name cannot be empty!");
-    // } if(this.state.email == ""){
-    //    this.showValidationError("email","Email cannot be empty!");
-    // } if(this.state.bachelor == ""){
-    //    this.showValidationError("bachelor","Bachelor cannot be empty!");
-    // } if(this.state.password == ""){
-    //    this.showValidationError("password", "Password cannot be empty!");
-    // }
-    
-  //}
+  onCheckBoxChange = e =>
+  this.setState({
+    ...this.state,
+    data: { ...this.state.data, [e.target.name]: e.target.checked }
+  });
 
   submitRegister = e => {
     e.preventDefault();
@@ -126,47 +62,9 @@ constructor(props) {
 
     return errors;
   };
-
   
   render() {
      const{data, errors,loading} = this.state;
-
-    // let firstErr = null,
-    //  lastErr = null,
-    //  passwordErr = null,
-    //  emailErr = null,
-    //  bachelorErr = null;
-
-    // for(let err of this.state.errors){
-    //   if(err.elm === "first"){
-    //     firstErr = err.msg;
-    //   }if(err.elm === "last"){
-    //     lastErr = err.msg;
-    //   }if(err.elm === "email"){
-    //     emailErr = err.msg;
-    //   }if(err.elm === "bachelor"){
-    //     bachelorErr = err.msg;
-    //   }if(err.elm === "password"){
-    //     passwordErr = err.msg;
-    //   }
-    // }
-
-    // let pwdWeak = false,
-    //     pwdMedium = false,
-    //     pwdStrong = false;
-
-    // if(this.state.pwdState === "weak"){
-    //   pwdWeak = true;
-    // }else if(this.state.pwdState === "medium"){
-    //   pwdWeak = true;
-    //   pwdMedium = true;
-    // }else if (this.state.pwdState === "strong"){
-    //   pwdWeak = true;
-    //   pwdMedium = true;
-    //   pwdStrong = true;
-    // }
-  
-
 
     return (
       <Form  onSubmit = {this.submitRegister} loading = {loading}>
@@ -210,7 +108,15 @@ constructor(props) {
             className="login-input" 
             placeholder="Email"
             onChange={this.onChange.bind(this)}/>
-             {/* <small className="danger-error">{emailErr ? emailErr : ""}</small> */}
+             {errors.email && <InlineError text={errors.email} />}
+          </div>
+
+          <div className="input-group">
+            <label htmlFor="isAdmin">Admin</label>
+            <input type="checkbox" 
+            name="isAdmin" 
+            className="login-input" 
+            onChange={this.onCheckBoxChange.bind(this)}/>
              {errors.email && <InlineError text={errors.email} />}
           </div>
          
@@ -237,16 +143,6 @@ constructor(props) {
               className="login-input"
               placeholder="Password"
               onChange={this.onChange.bind(this)}/>
-               {/* <small className="danger-error">{passwordErr ? passwordErr : ""}</small>
-
-               {this.state.password && <div className="password-state">
-                  <div
-                    className={"pwd pwd-weak " + (pwdWeak ? "show" : "")}></div>
-                  <div
-                    className={"pwd pwd-medium " + (pwdMedium ? "show" : "")}></div>
-                  <div
-                    className={"pwd pwd-strong " + (pwdStrong ? "show" : "")}></div>
-               </div>} */}
                {errors.password && <InlineError text={errors.password} />}
           </div>
          
