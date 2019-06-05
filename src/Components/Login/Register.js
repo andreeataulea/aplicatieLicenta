@@ -117,7 +117,6 @@ constructor(props) {
             name="isAdmin" 
             className="login-input" 
             onChange={this.onCheckBoxChange.bind(this)}/>
-             {errors.email && <InlineError text={errors.email} />}
           </div>
          
 

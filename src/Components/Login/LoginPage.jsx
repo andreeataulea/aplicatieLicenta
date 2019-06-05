@@ -20,8 +20,8 @@ class LoginPage extends Component {
       submit= data=>
         this.props.login(data).then(()=> this.props.history.push("/dashboard")).catch(err => console.log(err));
       
-        submitRegister= data=>
-        this.props.register(data).then(()=> this.props.history.push("/dashboard")).catch(err => console.log(err));
+      submitRegister= data=>
+      this.props.register(data).then(()=> this.props.history.push("/dashboard")).catch(err => console.log(err));
     
       showLoginBox(){
         this.setState({

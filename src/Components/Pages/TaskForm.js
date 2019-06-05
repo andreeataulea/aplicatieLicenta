@@ -135,6 +135,8 @@ onSubmit = e => {
     });
   }
 
+  
+
   // submitAndReview(){
   //   const{data,quiz,answer,correctAnswer} = this.state;
   //   if (correctAnswer !== null){
