@@ -6,6 +6,8 @@ import {connect} from 'react-redux';
 import PropTypes from "prop-types";
 import * as actions from"../../Actions/auth";
 
+import {Button} from "semantic-ui-react"
+
 
 const HomePage = ({isAuthenticated,logout}) =>(
     <div>
@@ -13,8 +15,7 @@ const HomePage = ({isAuthenticated,logout}) =>(
         {isAuthenticated ? (
             <button onClick={() => logout()}>Logout</button>
         ):(
-            <div>
-        <Link to = "./login">Login Page</Link>
+            <div><Button as={Link} to = "./login">Login page</Button>
     </div>
         )}
         </div>
